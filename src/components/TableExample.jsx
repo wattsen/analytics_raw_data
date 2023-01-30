@@ -108,18 +108,7 @@ const TableExample = () => {
               <TableCell component="th" scope="row">
                 {row.product_id}
               </TableCell>
-              <TableCell align="right">
-                <a
-                  href={`https://galactictapestry.com/products/${row.name
-                    .toLowerCase()
-                    .replace("™", "")
-                    .replaceAll(" ", "-")}`}
-                  target="_blank"
-                  className="underline text-blue-500"
-                >
-                  {row.name}
-                </a>
-              </TableCell>
+              <TableCell align="right">{row.name}</TableCell>
               <TableCell align="right">{row.unique_sessions}</TableCell>
               <TableCell align="right">{row.views}</TableCell>
             </TableRow>
