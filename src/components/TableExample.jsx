@@ -75,23 +75,27 @@ const TableExample = () => {
               onClick={() => handleSortingChange("unique_sessions")}
               align="right"
             >
-              Unique Sessions
-              {order === "desc" && sortField === "unique_sessions" ? (
-                <KeyboardArrowUpIcon />
-              ) : (
-                <KeyboardArrowDownIcon />
-              )}
+              <span className=" cursor-pointer">
+                Unique Sessions
+                {order === "desc" && sortField === "unique_sessions" ? (
+                  <KeyboardArrowUpIcon />
+                ) : (
+                  <KeyboardArrowDownIcon />
+                )}
+              </span>
             </TableCell>
             <TableCell
               onClick={() => handleSortingChange("views")}
               align="right"
             >
-              Product visited
-              {order === "desc" && sortField === "views" ? (
-                <KeyboardArrowUpIcon />
-              ) : (
-                <KeyboardArrowDownIcon />
-              )}
+              <span className=" cursor-pointer">
+                Product visited
+                {order === "desc" && sortField === "views" ? (
+                  <KeyboardArrowUpIcon />
+                ) : (
+                  <KeyboardArrowDownIcon />
+                )}
+              </span>
             </TableCell>
           </TableRow>
         </TableHead>

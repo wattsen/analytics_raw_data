@@ -8,10 +8,6 @@ body {
   font-weight: 700;
 }
 
-.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignRight.MuiTableCell-sizeMedium.css-1azl6jz-MuiTableCell-root {
-  cursor: pointer;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
