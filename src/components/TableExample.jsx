@@ -41,16 +41,13 @@ const TableExample = () => {
     }
   };
 
-  const data4 = [...data].sort((a, b) =>
-    a.views.toString().localeCompare(b.views.toString())
-  );
-
   const getData = () => {
     setLoading(true);
     fetch("https://narynkey.pythonanywhere.com/api/getproducts/1")
       .then((res) => res.json())
       .then((res) => {
         setData(res);
+        console.log(res);
       })
       .catch((e) => console.log(e))
       .finally((e) => setLoading(false));
@@ -65,7 +62,7 @@ const TableExample = () => {
   }
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer tainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -85,12 +82,64 @@ const TableExample = () => {
               </span>
             </TableCell>
             <TableCell
-              onClick={() => handleSortingChange("views")}
+              onClick={() => handleSortingChange("purchases")}
               align="right"
             >
               <span className=" cursor-pointer">
-                Product visited
-                {order === "desc" && sortField === "views" ? (
+                Product purchased
+                {order === "desc" && sortField === "purchases" ? (
+                  <KeyboardArrowUpIcon />
+                ) : (
+                  <KeyboardArrowDownIcon />
+                )}
+              </span>
+            </TableCell>
+            <TableCell
+              onClick={() => handleSortingChange("sold_as_upsell")}
+              align="right"
+            >
+              <span className=" cursor-pointer">
+                Sold as upsell
+                {order === "desc" && sortField === "sold_as_upsell" ? (
+                  <KeyboardArrowUpIcon />
+                ) : (
+                  <KeyboardArrowDownIcon />
+                )}
+              </span>
+            </TableCell>
+            <TableCell
+              onClick={() => handleSortingChange("declined_as_upsell")}
+              align="right"
+            >
+              <span className=" cursor-pointer">
+                Declined as upsell
+                {order === "desc" && sortField === "declined_as_upsell" ? (
+                  <KeyboardArrowUpIcon />
+                ) : (
+                  <KeyboardArrowDownIcon />
+                )}
+              </span>
+            </TableCell>
+            <TableCell
+              onClick={() => handleSortingChange("sold_child_upsells")}
+              align="right"
+            >
+              <span className=" cursor-pointer">
+                Sold child upsells
+                {order === "desc" && sortField === "sold_child_upsells" ? (
+                  <KeyboardArrowUpIcon />
+                ) : (
+                  <KeyboardArrowDownIcon />
+                )}
+              </span>
+            </TableCell>
+            <TableCell
+              onClick={() => handleSortingChange("declined_child_upsells")}
+              align="right"
+            >
+              <span className=" cursor-pointer">
+                Declined child upsells
+                {order === "desc" && sortField === "declined_child_upsells" ? (
                   <KeyboardArrowUpIcon />
                 ) : (
                   <KeyboardArrowDownIcon />
@@ -110,7 +159,11 @@ const TableExample = () => {
               </TableCell>
               <TableCell align="right">{row.name}</TableCell>
               <TableCell align="right">{row.unique_sessions}</TableCell>
-              <TableCell align="right">{row.views}</TableCell>
+              <TableCell align="right">{row.purchases}</TableCell>
+              <TableCell align="right">{row.sold_as_upsell}</TableCell>
+              <TableCell align="right">{row.declined_as_upsell}</TableCell>
+              <TableCell align="right">{row.sold_child_upsells}</TableCell>
+              <TableCell align="right">{row.declined_child_upsells}</TableCell>
             </TableRow>
           ))}
         </TableBody>

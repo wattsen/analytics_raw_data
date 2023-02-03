@@ -6,6 +6,7 @@ body {
 .MuiTableCell-sizeMedium.css-1azl6jz-MuiTableCell-root,
 .MuiTableCell-sizeMedium.css-1ygcj2i-MuiTableCell-root {
   font-weight: 700;
+  font-size: 14px;
 }
 
 @tailwind base;
