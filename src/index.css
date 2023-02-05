@@ -1,12 +1,18 @@
 body {
   margin: 0;
   font-family: sans-serif;
+  font-size: 14px;
 }
 
-.MuiTableCell-sizeMedium.css-1azl6jz-MuiTableCell-root,
-.MuiTableCell-sizeMedium.css-1ygcj2i-MuiTableCell-root {
-  font-weight: 700;
-  font-size: 14px;
+th,
+td {
+  font-weight: 500;
+  border: 1px soild #efefef;
+  text-align: center;
+  padding: 3px 5px;
+}
+th {
+  cursor: pointer;
 }
 
 @tailwind base;
