@@ -183,10 +183,13 @@ const NewTable = () => {
             <td className="border">
               <a
                 className="text-blue-500 underline"
-                href="https://galactictapestry.com/"
+                href={`https://galactictapestry.com/products/${row.name.replaceAll(
+                  " ",
+                  "-"
+                )}`}
                 target="_blank"
               >
-                Galactictapestry.com
+                Link
               </a>
             </td>
             <td className="border">{row.unique_sessions}</td>
