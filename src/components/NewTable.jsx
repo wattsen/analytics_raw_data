@@ -10,6 +10,10 @@ const NewTable = () => {
   const [order, setOrder] = useState("asc");
   const [selectedId, setSelectedId] = useState(1);
   const [collapse, setCollapse] = useState(false);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
 
   const getData = (id) => {
     if (!id) {
@@ -19,11 +23,23 @@ const NewTable = () => {
     fetch(`https://narynkey.pythonanywhere.com/api/getproducts/${id}`)
       .then((res) => res.json())
       .then((res) => {
-        setData(res);
-        console.log(res);
+        let sortData = [...res][1].sort((a, b) => {
+          return b["unique_sessions"]
+            .toString()
+            .localeCompare(a["unique_sessions"].toString(), "en", {
+              numeric: true,
+            });
+        });
+        setSortField("unique_sessions");
+        setOrder("desc");
+        setData(sortData);
+
+        console.log(sortData);
       })
       .catch((e) => console.log(e))
-      .finally((e) => setLoading(false));
+      .finally((e) => {
+        setLoading(false);
+      });
   };
 
   const getStore = () => {
@@ -71,6 +87,32 @@ const NewTable = () => {
     }
   };
 
+  const handleFilter = () => {
+    console.log(startDate);
+    console.log(endDate);
+    console.log(startTime);
+    console.log(endTime);
+
+    fetch(
+      `https://narynkey.pythonanywhere.com/api/getproducts/1?start_date=` +
+        startDate +
+        "T" +
+        startTime +
+        "&?end_date=" +
+        endDate +
+        "T" +
+        endTime
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setData(res[1]);
+        // console.log(res.results);
+      })
+      .catch((e) => console.log(e))
+      .finally((e) => setLoading(false));
+  };
+
   if (loading) {
     return "Loading";
   }
@@ -91,6 +133,50 @@ const NewTable = () => {
             }
           })}
         </select>
+      </div>
+      <div className="flex justify-center p-2">
+        <h2 className="font-bold mr-4">Start time: </h2>
+        <div className="px-2 mx-2 border-r">
+          <input
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            className="border mr-1"
+            type="date"
+            name=""
+            id=""
+          />
+          <input
+            value={startTime}
+            onChange={(e) => setStartTime(e.target.value)}
+            className="border"
+            type="time"
+            name=""
+            id=""
+          />
+        </div>
+        <h2 className="font-bold mr-4">End time: </h2>
+
+        <div className="px-2">
+          <input
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            className="border mr-1"
+            type="date"
+            name=""
+            id=""
+          />
+          <input
+            value={endTime}
+            onChange={(e) => setEndTime(e.target.value)}
+            className="border"
+            type="time"
+            name=""
+            id=""
+          />
+        </div>
+        <button onClick={handleFilter} className="border px-3 bg-gray-100">
+          Filter
+        </button>
       </div>
       <table className="border border-collapse border-gray-100 m-auto">
         <thead>
