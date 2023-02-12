@@ -92,9 +92,10 @@ const NewTable = () => {
     console.log(endDate);
     console.log(startTime);
     console.log(endTime);
+    console.log(selectedId);
 
     fetch(
-      `https://narynkey.pythonanywhere.com/api/getproducts/1?start_date=` +
+      `https://narynkey.pythonanywhere.com/api/getproducts/${selectedId}?start_date=` +
         startDate +
         "T" +
         startTime +
